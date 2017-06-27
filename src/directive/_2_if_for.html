@@ -5,25 +5,39 @@
   <meta charset="utf-8">
   <title></title>
   <script src="../lib/vue.js" charset="utf-8"></script>
+
+  <style media="screen">
+    .top {
+      margin-top: 10px;
+    }
+  </style>
 </head>
 
 <body>
 
-  <div id="app-2">
-    <span v-bind:title="message">
-    鼠标悬停几秒钟查看此处动态绑定的提示信息！
-    </span>
+  <div id="app-3">
+    <p v-if="seen">现在你看到我了</p>
+  </div>
+
+  <div class="top">
+    <button id="changeValue" type="button" name="button">点击动态改变信息</button>
   </div>
 
 </body>
 
 <script charset="utf-8">
-  var app2 = new Vue({
-    el: '#app-2',
+  var appData = {
+    el: '#app-3',
     data: {
-      message: '页面加载于 ' + new Date()
+      seen: true
     }
-  })
+  }
+  var app3 = new Vue(appData);
+
+  document.getElementById("changeValue").onclick = function() {
+    //点击后改变data
+    appData.data.seen = !appData.data.seen;
+  };
 </script>
 
 </html>
