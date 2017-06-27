@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>v-bind 指令</title>
+  <script src="../lib/vue.js" charset="utf-8"></script>
+  <style media="screen">
+    .top {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="top">
+    <span title="显示v-bind">鼠标移入显示v-bind</span>
+  </div>
+
+  <div id="app-2" class="top">
+    <span v-bind:title="message">
+    鼠标悬停几秒钟查看此处动态绑定的提示信息！
+    </span>
+  </div>
+
+  <div class="top">
+    <input id="test" type="text" name="" value="">
+    <button id="changeValue" type="button" name="button">点击动态改变绑定信息</button>
+  </div>
+
+</body>
+
+<script charset="utf-8">
+  var appData = {
+    el: '#app-2',
+    data: {
+      message: '页面加载于 ' + new Date()
+    }
+  }
+  var app2 = new Vue(appData);
+
+  document.getElementById("changeValue").onclick = function() {
+    //点击后改变message的值
+    var inputValue = document.getElementById("test").value;
+    appData.data.message = inputValue;
+  };
+</script>
+
+</html>
